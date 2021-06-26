@@ -19,23 +19,32 @@ set ::env(DESIGN_NAME) user_proj_example
 
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+	$script_dir/../../verilog/rtl/user_proj_example.sv"
 
 set ::env(CLOCK_PORT) ""
-set ::env(CLOCK_NET) "counter.clk"
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_NET) "fpu.clk"
+set ::env(CLOCK_PERIOD) "20"
 
 set ::env(FP_SIZING) absolute
 set ::env(DIE_AREA) "0 0 900 600"
 set ::env(DESIGN_IS_CORE) 0
 
-set ::env(VDD_NETS) [list {vccd1} {vccd2} {vdda1} {vdda2}]
-set ::env(GND_NETS) [list {vssd1} {vssd2} {vssa1} {vssa2}]
+set ::env(VDD_NETS) vccd1
+set ::env(GND_NETS) vssd1
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-set ::env(PL_BASIC_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.05
+set ::env(PL_BASIC_PLACEMENT) 0
+set ::env(PL_TARGET_DENSITY) 0.28
+
+set ::env(DIODE_INSERTION_STRATEGY) 4
+
+set ::env(FP_IO_VEXTEND) 2
+set ::env(FP_IO_HEXTEND) 2
+
+#set ::env(GLB_RT_OBS) "met2 -5 -5 905 605"
+
+set ::env(CLOCK_TREE_SYNTH) 1
 
 # If you're going to use multiple power domains, then keep this disabled.
-set ::env(RUN_CVC) 0
+set ::env(RUN_CVC) 1
